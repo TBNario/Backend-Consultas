@@ -2,7 +2,7 @@ package com.fiap.backend_consultas.model;
 import jakarta.persistence.*;
 @Entity
 @Table(name = "especialidades")
-public class Especialidade {
+public class Especialidade extends Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

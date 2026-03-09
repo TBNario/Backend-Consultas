@@ -36,4 +36,19 @@ public class PacienteService {
     public void deleteById(Long id){
         repository.deleteById(id);
     }
+
+    public Paciente update(Long id, Paciente updatedPaciente){
+        Paciente paciente = getById(id);
+        processUpdate(updatedPaciente, paciente);
+        return repository.save(paciente);
+    }
+
+    private static void processUpdate(Paciente updatedPaciente, Paciente paciente) {
+        paciente.setNome(updatedPaciente.getNome() != null ? updatedPaciente.getNome() : paciente.getNome());
+        paciente.setCpf(updatedPaciente.getCpf() != null ? updatedPaciente.getCpf() : paciente.getCpf());
+        paciente.setEmail(updatedPaciente.getEmail() != null ? updatedPaciente.getEmail() : paciente.getEmail());
+        paciente.setTelefone(updatedPaciente.getTelefone() != null ? updatedPaciente.getTelefone() : paciente.getTelefone());
+        paciente.setDataNascimento(updatedPaciente.getDataNascimento() != null ? updatedPaciente.getDataNascimento() : paciente.getDataNascimento());
+        paciente.setAtivo(updatedPaciente.getAtivo() != null ? updatedPaciente.getAtivo() : paciente.getAtivo());
+    }
 }
