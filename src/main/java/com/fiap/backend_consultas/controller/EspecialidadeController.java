@@ -1,14 +1,18 @@
 package com.fiap.backend_consultas.controller;
+
 import com.fiap.backend_consultas.model.Especialidade;
-import com.fiap.backend_consultas.model.Paciente;
 import com.fiap.backend_consultas.service.EspecialidadeService;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
+
 @RestController
 @RequestMapping("/especialidades")
 @CrossOrigin
 public class EspecialidadeController {
+
     private final EspecialidadeService service;
+
     public EspecialidadeController(EspecialidadeService service) {
         this.service = service;
     }
@@ -23,19 +27,8 @@ public class EspecialidadeController {
         return service.listar();
     }
 
-    @GetMapping("/by-id/{id}")
+    @GetMapping("/{id}")
     public Especialidade getById(@PathVariable Long id) {
         return service.getById(id);
-    }
-
-    @DeleteMapping("delete-by-id/{id}")
-    public void deleteById(@PathVariable Long id) {
-        service.deleteById(id);
-    }
-
-    @PutMapping("/update-by-id/{id}")
-    public Especialidade updateById(@PathVariable Long id,
-                                    @RequestBody Especialidade updatedEspecialidade) {
-        return service.update(id, updatedEspecialidade);
     }
 }

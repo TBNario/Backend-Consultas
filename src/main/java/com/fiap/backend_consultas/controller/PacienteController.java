@@ -10,6 +10,7 @@ import java.util.List;
 @RequestMapping("/pacientes")
 @CrossOrigin
 public class PacienteController {
+
     private final PacienteService service;
 
     public PacienteController(PacienteService service) {
@@ -26,19 +27,8 @@ public class PacienteController {
         return service.listar();
     }
 
-    @GetMapping("/by-id/{id}")
+    @GetMapping("/{id}")
     public Paciente getById(@PathVariable Long id) {
         return service.getById(id);
-    }
-
-    @DeleteMapping("/delete-by-id/{id}")
-    public void deleteById(@PathVariable Long id) {
-        service.deleteById(id);
-    }
-
-    @PutMapping("/update-by-id/{id}")
-    public Paciente updateById(@PathVariable Long id,
-                               @RequestBody Paciente updatedPaciente) {
-        return service.update(id, updatedPaciente);
     }
 }
